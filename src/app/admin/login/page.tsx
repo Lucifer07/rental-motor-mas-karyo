@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Bike, Eye, EyeOff, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { useLogo } from "@/lib/useLogo";
 
 export default function AdminLoginPage() {
@@ -34,80 +35,153 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="flex flex-col items-center mb-8">
-            {logo_url ? (
-              <img src={logo_url} alt={site_name} className="h-16 w-16 rounded-full object-cover mb-4" />
-            ) : (
-              <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
-                <Bike className="w-8 h-8 text-white" />
-              </div>
-            )}
-            <h1 className="text-2xl font-bold text-gray-900">{site_name}</h1>
-            <p className="text-gray-500 text-sm mt-1">Admin Dashboard</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {error && (
-              <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
-                placeholder="admin@example.com"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition pr-12"
-                  placeholder="Enter your password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
-                  ) : (
-                    <Eye className="w-5 h-5" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-orange-500 text-white py-2.5 rounded-lg font-medium hover:bg-orange-600 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-              {loading ? "Signing in..." : "Sign In"}
-            </button>
-          </form>
-        </div>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
+      {/* Background decorative blurs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-neon-pink/10 blur-[150px]" />
+        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-neon-mint/10 blur-[150px]" />
       </div>
+
+      {/* Grid overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative w-full max-w-md"
+      >
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-neon-pink/50 to-transparent" />
+
+          <div className="p-8 sm:p-10">
+            {/* Logo & Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-8 flex flex-col items-center"
+            >
+              <div className="relative mb-5">
+                {logo_url ? (
+                  <img
+                    src={logo_url}
+                    alt={site_name}
+                    className="h-16 w-16 rounded-2xl border border-white/10 object-cover"
+                  />
+                ) : (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-neon-pink to-neon-mint shadow-lg shadow-neon-pink/20">
+                    <Bike className="h-8 w-8 text-white" />
+                  </div>
+                )}
+              </div>
+              <h1 className="text-xl font-bold text-white font-display">
+                {site_name}
+              </h1>
+              <p className="mt-1 text-sm text-white/40 font-accent tracking-wider uppercase">
+                Admin Dashboard
+              </p>
+            </motion.div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400 backdrop-blur-sm"
+                >
+                  {error}
+                </motion.div>
+              )}
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <label className="mb-2 block text-xs font-bold tracking-wider text-white/50 uppercase font-accent">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-all duration-200 placeholder:text-white/20 focus:border-neon-pink/40 focus:bg-white/[0.07] focus:ring-1 focus:ring-neon-pink/30"
+                  placeholder="admin@example.com"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <label className="mb-2 block text-xs font-bold tracking-wider text-white/50 uppercase font-accent">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    autoComplete="current-password"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-12 text-sm text-white outline-none transition-all duration-200 placeholder:text-white/20 focus:border-neon-pink/40 focus:bg-white/[0.07] focus:ring-1 focus:ring-neon-pink/30"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 transition-colors hover:text-white/60"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </button>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-neon-pink to-neon-pink/80 px-4 py-3 text-sm font-bold text-white uppercase tracking-wider transition-all duration-300 hover:from-neon-pink/90 hover:to-neon-pink/70 disabled:opacity-50"
+                >
+                  <span className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="absolute inset-0 animate-neon-pulse bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  </span>
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {loading ? "Signing in..." : "Sign In"}
+                  </span>
+                </button>
+              </motion.div>
+            </form>
+          </div>
+        </div>
+
+        {/* Bottom text */}
+        <p className="mt-6 text-center text-xs text-white/20 font-accent tracking-wider uppercase">
+          Sewa Motor Mas Karyo &mdash; Admin Panel
+        </p>
+      </motion.div>
     </div>
   );
 }
