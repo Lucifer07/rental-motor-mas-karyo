@@ -35,10 +35,23 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
+    const { prices: newPrices, ...motorcycleData } = body;
 
     const motorcycle = await prisma.motorcycle.update({
       where: { id },
-      data: body,
+      data: {
+        ...motorcycleData,
+        prices: {
+          deleteMany: {},
+          create: newPrices?.map((p: { category: string; price12h: number; price24h: number; isActive: boolean }) => ({
+            category: p.category,
+            price12h: p.price12h,
+            price24h: p.price24h,
+            isActive: p.isActive,
+          })) ?? [],
+        },
+      },
+      include: { prices: true },
     });
 
     return Response.json(motorcycle);

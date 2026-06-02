@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface LogoData {
   logo_url: string;
@@ -10,7 +10,7 @@ interface LogoData {
 export function useLogo() {
   const [data, setData] = useState<LogoData>({ logo_url: "", site_name: "Mas Karyo" });
 
-  useEffect(() => {
+  const fetchSettings = useCallback(() => {
     fetch("/api/settings")
       .then((res) => res.json())
       .then((items: Array<{ key: string; value: string }>) => {
@@ -23,6 +23,12 @@ export function useLogo() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    fetchSettings();
+    window.addEventListener("focus", fetchSettings);
+    return () => window.removeEventListener("focus", fetchSettings);
+  }, [fetchSettings]);
 
   return data;
 }

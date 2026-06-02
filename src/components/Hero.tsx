@@ -36,7 +36,7 @@ export default function Hero({ settings }: HeroProps) {
   const heroSubtitle =
     settings?.hero_subtitle || "Layanan Prima, Tarif Terjangkau";
   const heroTitle =
-    settings?.hero_title || "Nyaman, Cepat, dan Hemat Bersama Mas Karyo!";
+    settings?.hero_title || "Nyaman, Cepat, dan Hemat Bersama Mas Karyo Rent!";
   const heroDescription =
     settings?.hero_description ||
     "Sewa motor terpercaya di Solo dengan harga terjangkau. Nikmati perjalanan Anda dengan armada terawat dan pelayanan 24 jam tanpa ribet.";

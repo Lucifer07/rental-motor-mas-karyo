@@ -40,7 +40,7 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
-      <main className="lg:ml-64 min-h-screen">
+      <main className="lg:ml-64 min-h-screen text-gray-900">
         <div className="p-6 pt-16 lg:pt-6">{children}</div>
       </main>
     </div>

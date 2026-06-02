@@ -60,7 +60,7 @@ export default function Navbar({ settings }: NavbarProps) {
             </div>
           )}
           <span className="text-sm font-bold tracking-wider text-white font-accent">
-            Mas Karyo
+            Mas Karyo Rent
           </span>
         </a>
 

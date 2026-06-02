@@ -172,7 +172,7 @@ async function main() {
     { key: "instagram_url", value: "https://www.instagram.com/sewamotorsolo.maskaryo" },
     { key: "youtube_url", value: "https://www.youtube.com/" },
     { key: "twitter_url", value: "https://twitter.com/" },
-    { key: "hero_title", value: "Pelayanan Ramah, Tarif Terjangkau Bersama Mas Karyo!" },
+    { key: "hero_title", value: "Pelayanan Ramah, Tarif Terjangkau Bersama Mas Karyo Rent!" },
     { key: "hero_subtitle", value: "Pelayanan Ramah, Tarif Terjangkau" },
     { key: "hero_description", value: "Keliling Solo jadi lebih praktis dengan sewa motor dari Mas Karyo. Lokasi dekat Stasiun Balapan, bisa antar jemput ke hotel atau bandara, unit lengkap dan siap digunakan." },
     { key: "about_description", value: "Kami adalah layanan rental motor terpercaya di Kota Solo yang siap menemani perjalanan Anda. Dengan komitmen untuk memberikan pelayanan terbaik, kami menyediakan motor dalam kondisi prima, tarif yang terjangkau, serta berbagai fasilitas tambahan seperti helm dan jas hujan gratis." },
