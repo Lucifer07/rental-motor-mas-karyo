@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { buildSettings } from "@/lib/settings";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const dynamic = "force-dynamic";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import AboutClient from "./AboutClient";
 

@@ -3,6 +3,8 @@ import { buildSettings } from "@/lib/settings";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/ui/Marquee";
+
+export const dynamic = "force-dynamic";
 import MotorSlider from "@/components/MotorSlider";
 import HowItWorks from "@/components/HowItWorks";
 import StatsBanner from "@/components/StatsBanner";

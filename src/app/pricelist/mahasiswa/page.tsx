@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { buildSettings } from "@/lib/settings";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+
+export const dynamic = "force-dynamic";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import MotorcycleCard from "@/components/MotorcycleCard";
